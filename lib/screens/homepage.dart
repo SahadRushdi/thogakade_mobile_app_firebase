@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,6 +12,15 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController _controller = TextEditingController();
   String saveText = "";
   String savedByButton = "";
+
+  late DatabaseReference db;
+
+  @override
+  void initState() {
+    super.initState();
+
+    db = FirebaseDatabase.instance.ref().child("data");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +62,16 @@ class _HomePageState extends State<HomePage> {
               "Saved by Button: $savedByButton",
               style: const TextStyle(fontSize: 16),
             ),
+            
+            TextButton(onPressed: ()=> {
+              setState(() {
+                Map<String, String> data = {
+                  'value': saveText,
+                  'valueSaved': savedByButton
+            };
+                db.push().set(data);
+              })
+            }, child: const Text("Save on Firebase")),
           ],
         ),
       ),

@@ -48,6 +48,7 @@ class DefaultFirebaseOptions {
     authDomain: 'thogakade-mobile-app-7c491.firebaseapp.com',
     storageBucket: 'thogakade-mobile-app-7c491.firebasestorage.app',
     measurementId: 'G-N9G01QEKK4',
+    databaseURL: 'https://thogakade-mobile-app-7c491-default-rtdb.firebaseio.com/',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -56,6 +57,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1023909493507',
     projectId: 'thogakade-mobile-app-7c491',
     storageBucket: 'thogakade-mobile-app-7c491.firebasestorage.app',
+    databaseURL: 'https://thogakade-mobile-app-7c491-default-rtdb.firebaseio.com/',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -65,6 +67,7 @@ class DefaultFirebaseOptions {
     projectId: 'thogakade-mobile-app-7c491',
     storageBucket: 'thogakade-mobile-app-7c491.firebasestorage.app',
     iosBundleId: 'com.example.firebaseExampleApp',
+    databaseURL: 'https://thogakade-mobile-app-7c491-default-rtdb.firebaseio.com/',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -74,6 +77,7 @@ class DefaultFirebaseOptions {
     projectId: 'thogakade-mobile-app-7c491',
     storageBucket: 'thogakade-mobile-app-7c491.firebasestorage.app',
     iosBundleId: 'com.example.firebaseExampleApp',
+    databaseURL: 'https://thogakade-mobile-app-7c491-default-rtdb.firebaseio.com/',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
@@ -84,5 +88,6 @@ class DefaultFirebaseOptions {
     authDomain: 'thogakade-mobile-app-7c491.firebaseapp.com',
     storageBucket: 'thogakade-mobile-app-7c491.firebasestorage.app',
     measurementId: 'G-VZYYQ7E6JG',
+    databaseURL: 'https://thogakade-mobile-app-7c491-default-rtdb.firebaseio.com/',
   );
 }
