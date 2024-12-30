@@ -37,14 +37,16 @@ class _HomePageState extends State<HomePage> {
               controller: _controller,
               decoration: const InputDecoration(
                 labelText: "Enter Text", // Label to guide the user
-                border: OutlineInputBorder(), // Makes the field visible with a border
+                border:
+                    OutlineInputBorder(), // Makes the field visible with a border
               ),
             ),
             const SizedBox(height: 16), // Add spacing between widgets
             TextButton(
               onPressed: () {
                 setState(() {
-                  savedByButton = _controller.text; // Update savedByButton with input
+                  savedByButton =
+                      _controller.text; // Update savedByButton with input
                 });
               },
               style: TextButton.styleFrom(
@@ -68,8 +70,8 @@ class _HomePageState extends State<HomePage> {
                 setState(() {
                   // Get the current time and date
                   final now = DateTime.now();
-                  final formattedDate = "${now.year}-${now.month}-${now.day}  ||  ${now.hour}:${now.minute}:${now.second}";
-
+                  final formattedDate =
+                      "${now.year}-${now.month}-${now.day}  ||  ${now.hour}:${now.minute}:${now.second}";
                   // Data to be saved
                   Map<String, String> data = {
                     'value': saveText,
@@ -81,8 +83,44 @@ class _HomePageState extends State<HomePage> {
                   db.push().set(data);
                 });
               },
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.blue, // Button background color
+                foregroundColor: Colors.white,
+              ),
               child: const Text("Save on Firebase"),
             ),
+
+            Container(
+              height: 400,
+              child: StreamBuilder(
+                  stream: db.onValue,
+                  builder: (context, snapshot) {
+                    print(snapshot.hasData);
+                    print(snapshot.hasError);
+
+                    if (snapshot.hasData) {
+                      // print(snapshot.data?.snapshot.value);
+                      Map data = snapshot.data?.snapshot.value as Map;
+                      print(data.values);
+
+                      return ListView.builder(
+                        itemCount: data.values.length,
+                        itemBuilder: (context, index) {
+                          final Map value = data.values.toList()[index];
+                          return Row(
+                            children: [
+                              Text("Index : $index,"),
+                              Text("Value : ${value['value']},"),
+                              Text("Value Saved : ${value['valueSaved']}"),
+                            ],
+                          );
+                        },
+                      );
+                    }
+
+                    return Text("Data");
+                  }),
+            )
           ],
         ),
       ),
