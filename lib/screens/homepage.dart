@@ -62,16 +62,27 @@ class _HomePageState extends State<HomePage> {
               "Saved by Button: $savedByButton",
               style: const TextStyle(fontSize: 16),
             ),
-            
-            TextButton(onPressed: ()=> {
-              setState(() {
-                Map<String, String> data = {
-                  'value': saveText,
-                  'valueSaved': savedByButton
-            };
-                db.push().set(data);
-              })
-            }, child: const Text("Save on Firebase")),
+
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  // Get the current time and date
+                  final now = DateTime.now();
+                  final formattedDate = "${now.year}-${now.month}-${now.day}  ||  ${now.hour}:${now.minute}:${now.second}";
+
+                  // Data to be saved
+                  Map<String, String> data = {
+                    'value': saveText,
+                    'valueSaved': savedByButton,
+                    'timestamp': formattedDate, // Add the timestamp
+                  };
+
+                  // Push the data to Firebase
+                  db.push().set(data);
+                });
+              },
+              child: const Text("Save on Firebase"),
+            ),
           ],
         ),
       ),
